@@ -2,7 +2,7 @@
 
 Welcome to BookSphere! This is a feature-rich, front-end web application that serves as a modern online bookstore. Users can discover, search, save, and purchase digital books from a vast library. The entire experience is built with foundational web technologies and integrates live, third-party APIs for real-time data and secure payment processing.
 
-**Live Demo Link:** `[Your Published Project Link Here]`
+**Live Demo Link:** https://book-sphere-aaryarai185.vercel.app/
 
 
 ## ✨ Core Features
