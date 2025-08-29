@@ -1,0 +1,43 @@
+/* --- Base & Typography --- */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0d1117;
+    background-image: radial-gradient(circle at top, #1f2937 0%, #0d1117 50%);
+    color: #E5E7EB;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fadeIn 0.5s ease-out forwards; }
+.page { display: none; }
+.page.active { display: block; }
+
+/* --- Header & Navigation --- */
+.nav-link { color: #a5b4fc; transition: color 0.3s ease; }
+.nav-link:hover { color: #ffffff; }
+
+/* --- Buttons --- */
+.btn { padding: 10px 24px; border-radius: 8px; font-weight: 600; text-align: center; transition: all 0.3s ease; cursor: pointer; }
+.btn-primary { color: white; background: linear-gradient(90deg, #581C87, #9D174D, #BE185D); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(219, 39, 119, 0.3); }
+.btn-secondary { background-color: #374151; color: #E5E7EB; }
+.btn-secondary:hover { background-color: #4B5563; }
+.btn-danger { background-color: #DC2626; color: white; }
+.btn-danger:hover { background-color: #B91C1C; }
+
+/* --- Card Styling --- */
+.book-card { background-color: #1F2937; border-radius: 12px; overflow: hidden; transition: all 0.3s ease; border: 1px solid #30363d; }
+.book-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); }
+.book-card img { transition: transform 0.3s ease; }
+.book-card:hover img { transform: scale(1.05); }
+
+/* --- Homepage Hero --- */
+.hero-background { background-image: url('https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&q=80'); background-size: cover; background-position: center; opacity: 0.1; }
+
+/* --- Forms --- */
+.form-container { background-color: #1F2937; padding: 2.5rem; border-radius: 12px; border: 1px solid #30363d; }
+.form-input { background-color: #374151; border: 1px solid #4B5563; color: #E5E7EB; padding: 10px; border-radius: 8px; }
+.form-input:focus { outline: none; box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.6); }

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookSphere</title>
+    <!-- Stripe.js for Payments -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <!-- Tailwind CSS for Styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-900 text-gray-200">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-gray-900/70 backdrop-blur-lg border-b border-gray-700">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="nav-link flex items-center gap-2">
+                <svg class="w-8 h-8 text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+                <span class="text-xl font-bold">BookSphere</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#browse" class="nav-link">Browse</a>
+                <a href="#wishlist" id="nav-wishlist" class="nav-link hidden">Wishlist</a>
+                <a href="#library" id="nav-library" class="nav-link hidden">My Library</a>
+                <div id="auth-container">
+                    <!-- Auth buttons will be injected here by JS -->
+                </div>
+            </div>
+            <div class="md:hidden">
+                 <button id="mobile-menu-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                 </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4 space-y-2">
+            <a href="#browse" class="nav-link block">Browse</a>
+            <a href="#wishlist" id="mobile-nav-wishlist" class="nav-link block hidden">Wishlist</a>
+            <a href="#library" id="mobile-nav-library" class="nav-link block hidden">My Library</a>
+            <div id="mobile-auth-container" class="pt-2">
+                <!-- Mobile auth buttons injected here -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="container mx-auto p-6">
+
+        <!-- Home Page -->
+        <section id="home-page" class="page">
+            <div class="text-center relative overflow-hidden rounded-lg">
+                <div class="absolute inset-0 hero-background"></div>
+                <div class="relative z-10 py-24 px-4">
+                    <h1 class="text-5xl md:text-6xl font-extrabold text-white">Where Stories Find Their Voice</h1>
+                    <p class="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">Discover unique reads from the world's most passionate independent authors.</p>
+                    <a href="#browse" class="mt-8 inline-block btn btn-primary">Explore the Collection</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Browse Page -->
+        <section id="browse-page" class="page">
+            <div class="flex flex-col md:flex-row justify-between md:items-center mb-8 gap-4">
+                <h2 class="text-3xl font-bold text-white">Browse Books</h2>
+                <form id="search-form" class="w-full max-w-md flex gap-2">
+                    <input type="text" id="search-input" placeholder="e.g., 'Dune' or 'sci-fi classics'" class="form-input w-full" />
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+            </div>
+            <div id="book-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <!-- Book cards will be injected here by JS -->
+            </div>
+        </section>
+
+        <!-- Book Detail Page -->
+        <section id="book-detail-page" class="page">
+            <!-- Book details will be injected here by JS -->
+        </section>
+        
+        <!-- Wishlist Page -->
+        <section id="wishlist-page" class="page">
+            <h2 class="text-3xl font-bold mb-8 text-white">My Wishlist</h2>
+            <div id="wishlist-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <!-- Wishlisted books will be injected here by JS -->
+            </div>
+            <div id="wishlist-empty" class="text-center py-16 bg-gray-800 rounded-lg hidden">
+                <p class="text-xl text-gray-400">Your wishlist is empty.</p>
+                <a href="#browse" class="nav-link mt-4 inline-block btn btn-primary">Find Books to Add</a>
+            </div>
+        </section>
+
+        <!-- Library Page -->
+        <section id="library-page" class="page">
+            <h2 class="text-3xl font-bold mb-8 text-white">My Library</h2>
+            <div id="library-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <!-- Owned books will be injected here by JS -->
+            </div>
+            <div id="library-empty" class="text-center py-16 bg-gray-800 rounded-lg hidden">
+                <p class="text-xl text-gray-400">Your library is empty.</p>
+                <a href="#browse" class="nav-link mt-4 inline-block btn btn-primary">Browse Books</a>
+            </div>
+        </section>
+
+        <!-- Login Page -->
+        <section id="login-page" class="page">
+            <div class="max-w-md mx-auto form-container">
+                <h2 class="text-3xl font-bold text-center mb-6 text-white">Welcome Back</h2>
+                <form id="login-form">
+                    <div class="mb-4">
+                        <label for="login-email" class="block text-sm font-medium text-gray-400 mb-1">Email Address</label>
+                        <input type="email" id="login-email" class="form-input w-full" required />
+                    </div>
+                    <div class="mb-6">
+                        <label for="login-password" class="block text-sm font-medium text-gray-400 mb-1">Password</label>
+                        <input type="password" id="login-password" class="form-input w-full" required />
+                    </div>
+                    <button type="submit" class="w-full btn btn-primary">Log In</button>
+                </form>
+                <p class="text-center text-sm text-gray-400 mt-6">
+                    Don't have an account? <a href="#signup" class="nav-link font-semibold">Sign up</a>
+                </p>
+            </div>
+        </section>
+
+        <!-- Sign Up Page -->
+        <section id="signup-page" class="page">
+            <div class="max-w-md mx-auto form-container">
+                <h2 class="text-3xl font-bold text-center mb-6 text-white">Create an Account</h2>
+                <form id="signup-form">
+                    <div class="mb-4">
+                        <label for="signup-email" class="block text-sm font-medium text-gray-400 mb-1">Email Address</label>
+                        <input type="email" id="signup-email" class="form-input w-full" required />
+                    </div>
+                    <div class="mb-4">
+                        <label for="signup-password" class="block text-sm font-medium text-gray-400 mb-1">Password</label>
+                        <input type="password" id="signup-password" class="form-input w-full" required />
+                    </div>
+                    <div class="mb-6">
+                        <label for="signup-confirm-password" class="block text-sm font-medium text-gray-400 mb-1">Confirm Password</label>
+                        <input type="password" id="signup-confirm-password" class="form-input w-full" required />
+                    </div>
+                    <button type="submit" class="w-full btn btn-primary">Create Account</button>
+                </form>
+                 <p class="text-center text-sm text-gray-400 mt-6">
+                    Already have an account? <a href="#login" class="nav-link font-semibold">Log in</a>
+                </p>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- Footer -->
+    <footer class="mt-16 py-8 text-center text-gray-500 border-t border-gray-800">
+        <p>&copy; 2025 BookSphere. Aarya Rai.</p>
+    </footer>
+
+    <!-- Notification Modal -->
+    <div id="notification-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4">
+        <div class="bg-gray-800 p-6 rounded-lg shadow-xl text-center max-w-sm w-full">
+            <p id="notification-message" class="text-lg mb-4 text-white"></p>
+            <button id="notification-close" class="btn btn-primary">Close</button>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
